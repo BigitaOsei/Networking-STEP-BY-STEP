@@ -1,0 +1,34 @@
+
+! Router Configuration
+! 3-Department Office Network
+
+enable
+configure terminal
+hostname Office-Router
+
+! Physical Interface
+interface GigabitEthernet0/0
+ no shutdown
+ no ip address
+ exit
+
+! IT Department - VLAN 10
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.224
+ exit
+
+! HR Department - VLAN 20
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.10.33 255.255.255.224
+ exit
+
+! Management Department - VLAN 30
+interface GigabitEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.10.65 255.255.255.240
+ exit
+
+end
+write memory
