@@ -1,0 +1,45 @@
+
+! Switch Configuration
+! 3-Department Office Network
+
+
+enable
+configure terminal
+hostname Office-Switch
+
+! Create VLANs
+vlan 10
+ name IT
+ exit
+
+vlan 20
+ name HR
+ exit
+
+vlan 30
+ name MANAGEMENT
+ exit
+
+! Access Ports
+interface FastEthernet0/1
+ switchport mode access
+ switchport access vlan 10
+ exit
+
+interface FastEthernet0/2
+ switchport mode access
+ switchport access vlan 20
+ exit
+
+interface FastEthernet0/3
+ switchport mode access
+ switchport access vlan 30
+ exit
+
+! Trunk Port to Router
+interface FastEthernet0/24
+ switchport mode trunk
+ exit
+
+end
+write memory
