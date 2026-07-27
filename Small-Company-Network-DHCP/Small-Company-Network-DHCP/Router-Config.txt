@@ -1,0 +1,54 @@
+! 
+! Router Configuration
+! Small Company Network + DHCP
+!
+
+enable
+configure terminal
+hostname TechSolutions-Router
+
+interface GigabitEthernet0/0
+ no shutdown
+ no ip address
+ exit
+
+interface GigabitEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.20.1 255.255.255.224
+ exit
+
+interface GigabitEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.33 255.255.255.224
+ exit
+
+interface GigabitEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.20.65 255.255.255.240
+ exit
+
+! ===== DHCP Configuration =====
+ip dhcp pool SALES
+ network 192.168.20.0 255.255.255.224
+ default-router 192.168.20.1
+ dns-server 8.8.8.8
+ exit
+
+ip dhcp pool FINANCE
+ network 192.168.20.32 255.255.255.224
+ default-router 192.168.20.33
+ dns-server 8.8.8.8
+ exit
+
+ip dhcp pool IT
+ network 192.168.20.64 255.255.255.240
+ default-router 192.168.20.65
+ dns-server 8.8.8.8
+ exit
+
+ip dhcp excluded-address 192.168.20.1
+ip dhcp excluded-address 192.168.20.33
+ip dhcp excluded-address 192.168.20.65
+
+end
+write memory
