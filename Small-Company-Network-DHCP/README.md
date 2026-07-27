@@ -1,0 +1,64 @@
+# Small Company Network with DHCP
+
+## Project Overview
+This project designs a small company network for **TechSolutions Ltd** with three departments:
+- Sales (25 hosts)
+- Finance (15 hosts)
+- IT (10 hosts)
+
+### Features
+- VLSM (Variable Length Subnet Masking)
+- Router-on-a-Stick (Inter-VLAN Routing)
+- DHCP Server configured on the Router
+- Automatic IP address assignment to PCs
+
+---
+
+## Network Requirements
+
+| Department | Hosts | VLAN |
+|------------|-------|------|
+| Sales      | 25    | 10   |
+| Finance    | 15    | 20   |
+| IT         | 10    | 30   |
+
+**Base Network:** `192.168.20.0/24`
+
+---
+
+## IP Addressing Plan (VLSM)
+
+| Department | Network            | Subnet Mask       | Usable Range                | Gateway          |
+|------------|--------------------|-------------------|-----------------------------|------------------|
+| Sales      | 192.168.20.0/27    | 255.255.255.224   | 192.168.20.2 – 192.168.20.30 | 192.168.20.1     |
+| Finance    | 192.168.20.32/27   | 255.255.255.224   | 192.168.20.34 – 192.168.20.62| 192.168.20.33    |
+| IT         | 192.168.20.64/28   | 255.255.255.240   | 192.168.20.66 – 192.168.20.78| 192.168.20.65    |
+
+---
+
+## Topology
+[Router]
+|
+Trunk Link
+|
+[Switch]
+/       |       
+PC-Sales  PC-Finance  PC-IT
+(VLAN 10) (VLAN 20)  (VLAN 30)
+
+
+---
+
+## How to Implement
+
+1. Build the topology in Cisco Packet Tracer
+2. Configure the Switch (VLANs + Access + Trunk)
+3. Configure the Router (Subinterfaces + DHCP)
+4. Set PCs to **Obtain IP address automatically**
+5. Test connectivity
+
+---
+
+## Author
+BigitaOsei  
+Networking Student Project
