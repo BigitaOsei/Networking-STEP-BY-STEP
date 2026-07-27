@@ -1,0 +1,46 @@
+! 
+! Switch Configuration
+! Small Company Network + DHCP
+!
+
+enable
+configure terminal
+hostname TechSolutions-Switch
+
+vlan 10
+ name SALES
+ exit
+
+vlan 20
+ name FINANCE
+ exit
+
+vlan 30
+ name IT
+ exit
+
+interface FastEthernet0/1
+ switchport mode access
+ switchport access vlan 10
+ description PC-Sales
+ exit
+
+interface FastEthernet0/2
+ switchport mode access
+ switchport access vlan 20
+ description PC-Finance
+ exit
+
+interface FastEthernet0/3
+ switchport mode access
+ switchport access vlan 30
+ description PC-IT
+ exit
+
+interface FastEthernet0/24
+ switchport mode trunk
+ description Trunk-to-Router
+ exit
+
+end
+write memory
